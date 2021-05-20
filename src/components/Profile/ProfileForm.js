@@ -1,4 +1,5 @@
 import { useContext, useRef } from "react";
+import { useHistory } from "react-router";
 import { FIREBASE_API_KEY } from "../../firebase";
 import AuthContext from "../../store/auth-context";
 
@@ -6,6 +7,7 @@ import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
 const newPasswordInputRef = useRef();
+const history = useHistory();
 const authContext = useContext(AuthContext);
 
 const submitHandler = event => {
@@ -25,6 +27,7 @@ const submitHandler = event => {
     }
   }).then(res => {
     alert("password change - wohoo")
+    history.replace("/");
   })
 }
 

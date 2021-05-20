@@ -1,10 +1,12 @@
 import { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router";
 import { FIREBASE_API_KEY } from "../../firebase";
 import AuthContext from "../../store/auth-context";
 
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -57,6 +59,7 @@ const AuthForm = () => {
       }
     }).then(data => {
       authCtx.login(data.idToken);
+      history.replace("/");
     }).catch(err => {
       alert(err.message);
     });
